@@ -1,0 +1,28 @@
+@model ASP.NET.MVC_NETFramework.Models.Department
+
+@{
+    ViewBag.Title = "Eliminar Departamento";
+}
+
+<div class="card card-danger">
+    <div class="card-header"><h3 class="card-title">Confirmar eliminación</h3></div>
+    <div class="card-body">
+        <p>¿Seguro que deseas eliminar este departamento?</p>
+        <dl class="row">
+            <dt class="col-sm-3">ID</dt>
+            <dd class="col-sm-9">@Model.DepartmentID</dd>
+            <dt class="col-sm-3">Nombre</dt>
+            <dd class="col-sm-9">@Model.Name</dd>
+            <dt class="col-sm-3">Grupo</dt>
+            <dd class="col-sm-9">@Model.GroupName</dd>
+        </dl>
+    </div>
+    <div class="card-footer">
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+            <button type="submit" class="btn btn-danger">Eliminar</button>
+            <a href="@Url.Action("Index")" class="btn btn-secondary">Cancelar</a>
+        }
+    </div>
+</div>

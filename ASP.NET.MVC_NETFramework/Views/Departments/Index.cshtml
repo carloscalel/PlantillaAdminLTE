@@ -1,0 +1,73 @@
+@model IEnumerable<ASP.NET.MVC_NETFramework.Models.Department>
+@using ASP.NET.MVC_NETFramework.Services
+
+@{
+    ViewBag.Title = "Mantenimiento de Departamentos";
+}
+
+<link rel="stylesheet" href="~/Scripts/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css" />
+
+<div class="card">
+    <div class="card-header d-flex justify-content-between align-items-center">
+        <h3 class="card-title mb-0">Mantenimiento de Departamentos</h3>
+        @if (ASP.NET.MVC_NETFramework.Services.UserRoleService.IsUserInAnyRole(User.Identity.Name, new[] { InternalRoles.CrudWriter, InternalRoles.CrudAdmin }))
+        {
+            <a href="@Url.Action("Create")" class="btn btn-primary btn-sm"><i class="fas fa-plus"></i> Nuevo</a>
+        }
+    </div>
+    <div class="card-body">
+        @if (TempData["SuccessMessage"] != null)
+        {
+            <div class="alert alert-success">@TempData["SuccessMessage"]</div>
+        }
+
+        <table id="departmentsTable" class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Grupo</th>
+                    <th>Modificado</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.DepartmentID</td>
+                        <td>@item.Name</td>
+                        <td>@item.GroupName</td>
+                        <td>@item.ModifiedDate.ToString("yyyy-MM-dd HH:mm")</td>
+                        <td>
+                            @if (ASP.NET.MVC_NETFramework.Services.UserRoleService.IsUserInAnyRole(User.Identity.Name, new[] { InternalRoles.CrudWriter, InternalRoles.CrudAdmin }))
+                            {
+                                <a class="btn btn-warning btn-xs" href="@Url.Action("Edit", new { id = item.DepartmentID })"><i class="fas fa-edit"></i> Editar</a>
+                            }
+                            @if (ASP.NET.MVC_NETFramework.Services.UserRoleService.IsUserInAnyRole(User.Identity.Name, new[] { InternalRoles.CrudAdmin }))
+                            {
+                                <a class="btn btn-danger btn-xs" href="@Url.Action("Delete", new { id = item.DepartmentID })"><i class="fas fa-trash"></i> Eliminar</a>
+                            }
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+@section scripts {
+    <script src="~/Scripts/plugins/datatables/jquery.dataTables.min.js"></script>
+    <script src="~/Scripts/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+    <script>
+        $(function () {
+            $('#departmentsTable').DataTable({
+                pageLength: 10,
+                order: [[1, 'asc']],
+                language: {
+                    url: 'https://cdn.datatables.net/plug-ins/1.13.8/i18n/es-ES.json'
+                }
+            });
+        });
+    </script>
+}
