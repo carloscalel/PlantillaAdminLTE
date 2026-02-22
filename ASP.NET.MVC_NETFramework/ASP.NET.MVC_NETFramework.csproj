@@ -112,6 +112,16 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\DepartmentsController.cs" />
+    <Compile Include="Controllers\AccessController.cs" />
+    <Compile Include="Data\DepartmentRepository.cs" />
+    <Compile Include="Data\AccessRepository.cs" />
+    <Compile Include="Models\Department.cs" />
+    <Compile Include="Models\AccessRole.cs" />
+    <Compile Include="Models\AccessUser.cs" />
+    <Compile Include="Security\InternalAuthorizeAttribute.cs" />
+    <Compile Include="Services\InternalRoles.cs" />
+    <Compile Include="Services\UserRoleService.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -177,6 +187,7 @@
     <Content Include="Content\bootstrap-reboot.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Database\Scripts\001_security_access_control.sql" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
@@ -2185,6 +2196,16 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Departments\Create.cshtml" />
+    <Content Include="Views\Departments\Delete.cshtml" />
+    <Content Include="Views\Departments\Edit.cshtml" />
+    <Content Include="Views\Departments\Index.cshtml" />
+    <Content Include="Views\Departments\_Form.cshtml" />
+    <Content Include="Views\Access\Create.cshtml" />
+    <Content Include="Views\Access\Delete.cshtml" />
+    <Content Include="Views\Access\Edit.cshtml" />
+    <Content Include="Views\Access\Index.cshtml" />
+    <Content Include="Views\Access\_Form.cshtml" />
     <Content Include="Scripts\plugins\bootstrap-colorpicker\css\bootstrap-colorpicker.css.map" />
     <Content Include="Scripts\plugins\bootstrap-colorpicker\css\bootstrap-colorpicker.min.css.map" />
     <Content Include="Scripts\plugins\bootstrap-colorpicker\js\bootstrap-colorpicker.js.map" />

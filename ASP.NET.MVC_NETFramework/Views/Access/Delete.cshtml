@@ -1,0 +1,16 @@
+@model ASP.NET.MVC_NETFramework.Models.AccessUser
+@{ ViewBag.Title = "Eliminar acceso"; }
+<div class="card card-danger">
+    <div class="card-header"><h3 class="card-title">Eliminar acceso</h3></div>
+    <div class="card-body">
+        <p>¿Eliminar acceso de <strong>@Model.UserName</strong>?</p>
+    </div>
+    <div class="card-footer">
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+            <button class="btn btn-danger" type="submit">Eliminar</button>
+            <a class="btn btn-secondary" href="@Url.Action("Index")">Cancelar</a>
+        }
+    </div>
+</div>
