@@ -1,0 +1,56 @@
+@model IEnumerable<ASP.NET.MVC_NETFramework.Models.AccessUser>
+@{
+    ViewBag.Title = "Gestión de Accesos";
+}
+
+<link rel="stylesheet" href="~/Scripts/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css" />
+
+<div class="card">
+    <div class="card-header d-flex justify-content-between">
+        <h3 class="card-title">Gestión de accesos y roles</h3>
+        <a class="btn btn-primary btn-sm" href="@Url.Action("Create")"><i class="fas fa-user-plus"></i> Nuevo acceso</a>
+    </div>
+    <div class="card-body">
+        @if (TempData["SuccessMessage"] != null)
+        {
+            <div class="alert alert-success">@TempData["SuccessMessage"]</div>
+        }
+
+        <table id="accessTable" class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>Usuario</th>
+                    <th>Nombre</th>
+                    <th>Correo</th>
+                    <th>Roles</th>
+                    <th>Activo</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var user in Model)
+                {
+                    <tr>
+                        <td>@user.UserName</td>
+                        <td>@user.DisplayName</td>
+                        <td>@user.Email</td>
+                        <td>@user.RolesSummary</td>
+                        <td>@(user.IsActive ? "Sí" : "No")</td>
+                        <td>
+                            <a class="btn btn-warning btn-xs" href="@Url.Action("Edit", new { id = user.UserId })">Editar</a>
+                            <a class="btn btn-danger btn-xs" href="@Url.Action("Delete", new { id = user.UserId })">Eliminar</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+@section scripts {
+    <script src="~/Scripts/plugins/datatables/jquery.dataTables.min.js"></script>
+    <script src="~/Scripts/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+    <script>
+        $(function() { $('#accessTable').DataTable(); });
+    </script>
+}

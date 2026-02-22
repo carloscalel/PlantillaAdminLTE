@@ -1,0 +1,18 @@
+@model ASP.NET.MVC_NETFramework.Models.AccessUser
+@{ ViewBag.Title = "Nuevo acceso"; }
+<div class="card card-primary">
+    <div class="card-header"><h3 class="card-title">Nuevo acceso</h3></div>
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        <div class="card-body">
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.Partial("_Form", Model)
+        </div>
+        <div class="card-footer">
+            <button class="btn btn-primary" type="submit">Guardar</button>
+            <a class="btn btn-secondary" href="@Url.Action("Index")">Cancelar</a>
+        </div>
+    }
+</div>
+@section scripts { @Scripts.Render("~/bundles/jqueryval") }
