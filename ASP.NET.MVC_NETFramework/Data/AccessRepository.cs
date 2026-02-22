@@ -182,17 +182,26 @@ WHERE UserId = @UserId";
         public IList<string> GetRoleCodesForIdentity(string identityName)
         {
             const string query = @"
-SELECT r.RoleCode
+SELECT DISTINCT r.RoleCode
 FROM Security.Users u
 JOIN Security.UserRoles ur ON ur.UserId = u.UserId
 JOIN Security.Roles r ON r.RoleId = ur.RoleId
-WHERE u.UserName = @UserName AND u.IsActive = 1 AND r.IsActive = 1";
+WHERE u.IsActive = 1
+  AND r.IsActive = 1
+  AND (
+        UPPER(u.UserName) = UPPER(@UserName)
+        OR (CHARINDEX('\\', u.UserName) > 0 AND UPPER(SUBSTRING(u.UserName, CHARINDEX('\\', u.UserName) + 1, LEN(u.UserName))) = UPPER(@UserNameOnly))
+      )";
+
+            var normalized = (identityName ?? string.Empty).Trim();
+            var nameOnly = normalized.Contains("\\") ? normalized.Split('\\').Last() : normalized;
 
             var roles = new List<string>();
             using (var cn = new SqlConnection(_connectionString))
             using (var cmd = new SqlCommand(query, cn))
             {
-                cmd.Parameters.AddWithValue("@UserName", identityName.Trim());
+                cmd.Parameters.AddWithValue("@UserName", normalized);
+                cmd.Parameters.AddWithValue("@UserNameOnly", nameOnly);
                 cn.Open();
                 using (var rd = cmd.ExecuteReader())
                 {
