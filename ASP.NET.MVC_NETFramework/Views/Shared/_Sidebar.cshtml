@@ -1,26 +1,29 @@
 ﻿<aside class="main-sidebar sidebar-dark-primary elevation-4">
     <a href="/" class="brand-link">
-        <span class="brand-text font-weight-light">MyApp</span>
+        <span class="brand-text font-weight-light">Intranet AW</span>
     </a>
 
     <div class="sidebar">
         <nav class="mt-2">
             <ul class="nav nav-pills nav-sidebar flex-column">
-
                 <li class="nav-item">
-                    <a href="@Url.Action("About", "Home")" class="nav-link">
-                        <i class="nav-icon fas fa-info-circle"></i>
-                        <p>About</p>
+                    <a href="@Url.Action("Index", "Home")" class="nav-link">
+                        <i class="nav-icon fas fa-tachometer-alt"></i>
+                        <p>Dashboard</p>
                     </a>
                 </li>
-
                 <li class="nav-item">
-                    <a href="@Url.Action("Contact", "Home")" class="nav-link">
-                        <i class="nav-icon fas fa-envelope"></i>
-                        <p>Contact</p>
+                    <a href="@Url.Action("Index", "Departments")" class="nav-link">
+                        <i class="nav-icon fas fa-table"></i>
+                        <p>CRUD Departamentos</p>
                     </a>
                 </li>
-
+                            <li class="nav-item">
+                    <a href="@Url.Action("Index", "Access")" class="nav-link">
+                        <i class="nav-icon fas fa-user-lock"></i>
+                        <p>Gestión de Accesos</p>
+                    </a>
+                </li>
             </ul>
         </nav>
     </div>

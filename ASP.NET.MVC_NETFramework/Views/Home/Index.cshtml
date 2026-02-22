@@ -1,13 +1,47 @@
-﻿<div class="card">
-    <link rel="stylesheet" href="~/Scripts/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css" />
+﻿@{
+    ViewBag.Title = "Dashboard";
+}
 
-    <script src="~/Scripts/plugins/datatables/jquery.dataTables.min.js"></script>
-    <script src="~/Scripts/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
-
-    <div class="card-header">
-        <h3 class="card-title">Bienvenido</h3>
+<div class="row">
+    <div class="col-md-4">
+        <div class="small-box bg-info">
+            <div class="inner">
+                <h3>Fase 1</h3>
+                <p>CRUD de mantenimiento</p>
+            </div>
+            <div class="icon"><i class="fas fa-database"></i></div>
+        </div>
     </div>
+    <div class="col-md-4">
+        <div class="small-box bg-success">
+            <div class="inner">
+                <h3>AdventureWorks2022</h3>
+                <p>Tabla HumanResources.Department</p>
+            </div>
+            <div class="icon"><i class="fas fa-table"></i></div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="small-box bg-warning">
+            <div class="inner">
+                <h3>Roles internos</h3>
+                <p>CrudReader / CrudWriter / CrudAdmin</p>
+            </div>
+            <div class="icon"><i class="fas fa-user-shield"></i></div>
+        </div>
+    </div>
+</div>
+
+<div class="card">
+    <div class="card-header"><h3 class="card-title">Siguiente paso</h3></div>
     <div class="card-body">
-        AdminLTE funcionando correctamente ✅
+        Ir al módulo <strong>CRUD Departamentos</strong> para crear, editar y eliminar datos con DataTables y validaciones.
+    </div>
+</div>
+
+<div class="card">
+    <div class="card-header"><h3 class="card-title">Control de Accesos</h3></div>
+    <div class="card-body">
+        El mantenimiento de usuarios y roles internos está disponible en <strong>Gestión de Accesos</strong>.
     </div>
 </div>

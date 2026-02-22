@@ -1,0 +1,27 @@
+@model ASP.NET.MVC_NETFramework.Models.Department
+
+@{
+    ViewBag.Title = "Editar Departamento";
+}
+
+<div class="card card-warning">
+    <div class="card-header"><h3 class="card-title">Editar Departamento #@Model.DepartmentID</h3></div>
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(m => m.DepartmentID)
+
+        <div class="card-body">
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.Partial("_Form", Model)
+        </div>
+        <div class="card-footer">
+            <button type="submit" class="btn btn-warning">Actualizar</button>
+            <a href="@Url.Action("Index")" class="btn btn-secondary">Cancelar</a>
+        </div>
+    }
+</div>
+
+@section scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
